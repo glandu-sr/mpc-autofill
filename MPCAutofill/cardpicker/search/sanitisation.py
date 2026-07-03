@@ -1,3 +1,4 @@
+import json
 import re
 import string
 
@@ -6,7 +7,9 @@ def text_to_list(input_text: str) -> list[int]:
     # Helper function to translate strings like "[2, 4, 5, 6]" into lists
     if input_text == "":
         return []
-    return [int(x) for x in input_text.strip("][").replace(" ", "").split(",")]
+    if re.match(r"\[(\d+, ?)*\d?\]", input_text):
+        return json.loads(input_text)
+    return []  # Unexpected format, return an empty list
 
 
 def fix_whitespace(input_str: str) -> str:
