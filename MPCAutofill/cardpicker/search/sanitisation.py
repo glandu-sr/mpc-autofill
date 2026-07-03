@@ -10,7 +10,8 @@ def text_to_list(input_text: str) -> list[int]:
 
 
 def fix_whitespace(input_str: str) -> str:
-    return " ".join([x for x in input_str.split(" ") if x]).strip()
+    # Replace any consecutive whitespace characters by a single splace and strip the string
+    return re.sub(r"\s+", " ", input_str).strip()
 
 
 def to_searchable(input_str: str) -> str:
@@ -22,7 +23,7 @@ def to_searchable(input_str: str) -> str:
     input_str = input_str.lower()
 
     # Remove text inside brackets
-    input_str = re.sub("[\(\[].*?[\)\]]", "", input_str)
+    input_str = re.sub(r"[\(\[].*?[\)\]]", "", input_str)
 
     # Remove hyphens and substitute right apostrophes (’) for single quotes (')
     input_str = input_str.replace("-", " ").replace("’", "'")
