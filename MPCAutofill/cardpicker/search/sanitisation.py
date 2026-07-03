@@ -24,12 +24,8 @@ def to_searchable(input_str: str) -> str:
     # Remove text inside brackets
     input_str = re.sub("[\(\[].*?[\)\]]", "", input_str)
 
-    # Remove hyphens and the word "the" and substitute right apostrophes (’) for single quotes (')
-    input_str = input_str.replace("-", " ").replace(" the ", " ").replace("’", "'")
-
-    # If the string begins with the word "the", remove it
-    if input_str.startswith("the "):
-        input_str = input_str[4:]
+    # Remove hyphens and substitute right apostrophes (’) for single quotes (')
+    input_str = input_str.replace("-", " ").replace("’", "'")
 
     # Remove punctuation
     input_str = input_str.translate(str.maketrans("", "", string.punctuation))
